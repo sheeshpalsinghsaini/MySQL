@@ -1,0 +1,66 @@
+"
+# MySQL Basic commands
+    -> show databases;
+    -> use databaseName;    //select specify name database.
+    -> show tables;
+    -> desc tableName;
+    -> create table tableName(pId int primary key auto increment,name varchar(20) not null);
+    -> select * from product;
+    -> update product/tableName set price=5000,descrip="this is new phone" where product_id=123;
+    -> delete from product where product_id=129;
+    -> insert int product(product_id,name,price,descrip) value(-,-,-,-) (-,-,-,-) (-,-,-,-) (-,-,-,-)
+    -> select * from product where name = "TEST1";
+    -> select * from product where price>5000 and price<1000;
+    -> select * from product where price=1000 or name="TEST2";  //select both condition data.
+    -> select * from product where not price = 10000;
+    -> select * from product where not price = 10000 or price is NULL;
+    -> select name,descrip from product where price is not null;
+    -> select name as "PRODUCT_NAME" from product where price is not null;
+    -> select * from product order by price;
+    -> select * from product order by price desc;
+    -> select * from product order by price asc;
+    -> select * from product where price is null;
+    -> select * from product where price is not null;
+    -> select * from product limit 3;                       //show only initial 3 product
+    -> select * from product limit 4;
+    -> select * form product limit 3 offset 2;          //select 3 after leave 2 entry
+    -> select * from product order by price desc;
+    -> select * from product order by price de3sc limit 1 offset 3;
+    -> select * from product where price =80000 or price = 10000 or price=5000;
+    -> select * from product where price=8000 or price=10000 or price=50000;
+    -> select * from product where price in (8000,10000,50000);             //select all form in given number.
+    -> select * from product where product_id between 112 and 125;  //select between given range inclusive
+    -> select SUM(price) from product where price is not null;
+    -> select SUM(price) from product;
+    -> select SUM(price) from product where product_id between 112 and 125;
+    -> select COUNT(product_id) from product;
+    -> select COUNT(product_id) from product where price is null;
+    -> select AVG(price) from product;
+    -> select MAX(price) from product;
+    -> select MIN(price) from product;
+    -> select * from product where price=(select MAX(price) from product);  // nested query
+    -> select * from product where price=(select MIN(price) from product);
+    -> select * form product order by product_id desc;
+    -> select * froom product order by product_id desc limit 4;
+    -> select * form product where descrip like 'This%';            // like operation
+    -> select * from product where name like 'T%';                  // start with T end with anything
+    -> select * from product where descrip like '%t';               // start anything end with t.
+    -> select * form product where name like '_e%';         //first char anything second should be 3, in last anything.
+    -> select * form product where name like '%IPHONE';     //first anything, last anything, in mid IPHONE must.
+    
+
+    //create product_image table
+    -> create table product_images(image_id int primary key auto_increment, image_name varchar(10) not null, title varchar
+        (10),p_id int, foreign key(p_id) references product(product_id));
+
+
+    -----------------
+        JOINs
+    -> select product.product_id,product.name,product.price,product_image.image_name,product_image.title from product INNER
+        JOIN product_images ON product.product_id=product_images.p_id;
+
+    -> select product.product_id,product.name,product.price,product_image.image_name,product_image.title from LEFT JOIN 
+        product_images ON product.product_id=product_images.p_id;
+
+
+"
